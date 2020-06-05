@@ -1,5 +1,7 @@
 
-lee_six_sigs = read.table("/data_genome1/public_data/Stratton_crypt_signatures/git/colon_microbiopsies/signature_extraction/subsitutions_hdp_signature_extraction/Signature_category_counts.txt", sep="\t", header=T)
+#lee_six_sigs = read.table("/data_genome1/public_data/Stratton_crypt_signatures/git/colon_microbiopsies/signature_extraction/subsitutions_hdp_signature_extraction/Signature_category_counts.txt", sep="\t", header=T)
+
+lee_six_sigs = read.table("~/NIH-Work/Github/Dziubanska-Kusibab_et_al._Colibactin/Data/External/SBS_signatures/Signature_category_counts_LeeSix.txt", sep="\t", header=T)
 
 lee_six_mat = as.matrix(lee_six_sigs[, 2:ncol(lee_six_sigs)])
 tmp_c = as.character(lee_six_sigs$X)
@@ -10,7 +12,9 @@ rownames(lee_six_mat) = trinuc_change
 
 lee_six_mat_new_sigs = lee_six_mat[, c(paste0("N",1:5))]
 
-new_sigs = read.csv(file="/data_genome2/public_data/Alexandrov_ICGC/v2018/sigProfiler_SBS_signatures_2018_03_28.csv")
+#new_sigs = read.csv(file="/data_genome2/public_data/Alexandrov_ICGC/v2018/sigProfiler_SBS_signatures_2018_03_28.csv")
+#new_sigs = read.csv(file="~/NIH-Work/MutationSignature/The Repertoire of Mutational Signatures in Human Cancer/Data/syn11726601/Mutational Signatures/SigProfiler Signatures/SigProfiler reference signatures/SigProfiler reference whole-genome signatures/sigProfiler_SBS_signatures_2018_03_28.csv")
+new_sigs = read.csv(file="~/NIH-Work/Github/Dziubanska-Kusibab_et_al._Colibactin/Data/External/SBS_signatures/sigProfiler_SBS_signatures_2018_03_28.csv")
 new_sigs_fixed = as.data.frame(t(new_sigs[, 3:ncol(new_sigs)]))
 colnames(new_sigs_fixed) = apply(new_sigs[, 1:2], 1, function(x) {paste0(substr(x[2],1,1),"[", x[1],"]", substr(x[2],3,3))})
 
